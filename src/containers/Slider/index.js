@@ -7,11 +7,11 @@ import "./style.scss";
 const Slider = () => {
   const { data } = useData();
   const [index, setIndex] = useState(0);
-  const byDateDesc = data?.focus.sort((evtA, evtB) =>
+  const byDateDesc = data?.focus ? data.focus.sort((evtA, evtB) =>
     new Date(evtA.date) < new Date(evtB.date) ? -1 : 1
-  );
+  ) : [];
   const nextCard = () => {
-    setTimeout(() => setIndex(index < byDateDesc.length ? index + 1 : 0), 5000);
+    setTimeout(() => setIndex(index < byDateDesc.length -1 ? index + 1 : 0), 5000);
   };
   useEffect(() => {
     nextCard();
@@ -39,7 +39,7 @@ const Slider = () => {
       </div>
       <div className="SlideCard__paginationContainer">
         <div className="SlideCard__pagination">
-          {byDateDesc.map((event, radioIdx) => (
+          {byDateDesc?.map((event, radioIdx) => (
             <input
               key={`${event.id}`}
               type="radio"
