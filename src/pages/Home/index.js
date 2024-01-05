@@ -13,7 +13,12 @@ import Modal from "../../containers/Modal";
 import { useData } from "../../contexts/DataContext";
 
 const Page = () => {
-  const {last} = useData()
+  const {data} = useData();
+  const sortByDate = (a, b) => new Date(a.date) - new Date(b.date);
+  const sortedByDate = data?.events ? [...data.events].sort(sortByDate) : [];
+  const last = sortedByDate[sortedByDate.length -1];
+ 
+
   return <>
     <header>
       <Menu />
