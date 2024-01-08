@@ -126,7 +126,7 @@ const Page = () => {
           title={last ? last.title : ""}
           date={new Date(last?.date)}
           small
-          label="boom"
+          label={last ? last.type : ""}
         />
       </div>
       <div className="col contact">
